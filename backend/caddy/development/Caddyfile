@@ -1,0 +1,14 @@
+{
+	admin localhost:20190
+}
+
+croply.uk {
+	tls internal
+
+	reverse_proxy / http://localhost:8000 {
+		header_up Host {host}
+		header_up X-Real-IP {remote}
+		header_up X-Forwarded-For {remote}
+		header_up X-Forwarded-Proto {scheme}
+	}
+}
