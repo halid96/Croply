@@ -3,7 +3,8 @@ local.env
 production.env
 backend/caddy/production
 backend/python/packages
-
+backend/storage/uploads/*
+backend/storage/video_frames_json/*
 
 
 # YOLO model weights

@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Croply - AI-Powered Video Analysis Platform | Extract Insights from Any Video</title>
+    <meta name="description" content="Croply uses advanced AI and YOLO v8 to analyze videos, extract subtitles, detect objects, track motion, and provide comprehensive video insights for businesses.">
+    <meta name="keywords" content="video analysis, AI video processing, YOLO v8, object detection, video analytics, subtitle extraction, motion tracking">
+    <meta property="og:title" content="Croply - AI-Powered Video Analysis Platform">
+    <meta property="og:description" content="Extract comprehensive insights from videos using advanced AI. Object detection, motion tracking, subtitle extraction, and more.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://croply.uk">
+    <link rel="canonical" href="https://croply.uk">
+    <link rel="icon" type="image/png" href="https://croply.uk/public/assets/croply_logo.PNG">
+    
+    <!-- CodeMirror CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/github.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 5px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #6366f1;
+        }
+
+        .logo img {
+            width: 40px;
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #6366f1;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #6366f1;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.125rem;
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .user-name {
+            font-weight: 600;
+            color: #1e293b;
+            font-size: 0.875rem;
+        }
+
+        .user-email {
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+
+        .dropdown-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            color: #64748b;
+            font-size: 1.25rem;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+        }
+
+        .dropdown-btn:hover {
+            color: #1e293b;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 0.5rem;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            min-width: 250px;
+            z-index: 1000;
+            display: none;
+        }
+
+        .dropdown-menu.show {
+            display: block;
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            color: #1e293b;
+            text-decoration: none;
+            transition: background 0.2s;
+            border-bottom: 1px solid #f1f5f9;
+            cursor: pointer;
+        }
+
+        .dropdown-item:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-item:hover {
+            background: #f8fafc;
+        }
+
+        .dropdown-item-icon {
+            margin-right: 0.75rem;
+            font-size: 1.125rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .dropdown-item-content {
+            flex: 1;
+        }
+
+        .dropdown-item-label {
+            font-size: 0.875rem;
+            color: #64748b;
+            margin-bottom: 0.25rem;
+        }
+
+        .dropdown-item-value {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #1e293b;
+            word-break: break-all;
+        }
+
+        .dropdown-item.logout {
+            color: #ef4444;
+        }
+
+        .dropdown-item.logout:hover {
+            background: #fef2f2;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: #6366f1;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5855eb;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #6366f1;
+            border: 2px solid #6366f1;
+        }
+
+        .btn-secondary:hover {
+            background: #6366f1;
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: #f8fafc;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1e293b;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: #6366f1;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+
+        .feature-card p {
+            color: #64748b;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .pricing-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .pricing-header {
+            background: #6366f1;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .pricing-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .features-list {
+            list-style: none;
+        }
+
+        .features-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-name {
+            font-weight: 500;
+            color: #1e293b;
+        }
+
+        .credit-cost {
+            background: #f1f5f9;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: #475569;
+            font-weight: 600;
+        }
+
+        .pricing-cta {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .credit-info {
+            margin-bottom: 1.5rem;
+        }
+
+        .credit-info h4 {
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+            color: #1e293b;
+        }
+
+        .credit-info p {
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+
+        /* API Section */
+        .api-section {
+            padding: 80px 0;
+            background: #f8fafc;
+        }
+
+        .api-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .api-endpoint {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .endpoint-url {
+            background: #1e293b;
+            color: #10b981;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .code-tabs {
+            display: flex;
+            border-bottom: 2px solid #e2e8f0;
+            margin-bottom: 1rem;
+        }
+
+        .tab-button {
+            padding: 0.75rem 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            color: #64748b;
+            transition: all 0.3s;
+        }
+
+        .tab-button.active {
+            color: #6366f1;
+            border-bottom: 2px solid #6366f1;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .CodeMirror {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .actions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .action-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #6366f1;
+        }
+
+        .action-item h4 {
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+
+        .action-item p {
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #1e293b;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #f1f5f9;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 1rem;
+            text-align: center;
+            color: #94a3b8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .pricing-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="/public/assets/croply_logo.PNG" alt="Croply Logo">
+                Croply
+            </div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#api">API</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-secondary" onclick="showLoginModal(); return false;">Login</a>
+                <a href="#" class="btn btn-primary" onclick="showSignupModal(); return false;">Create Account</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>AI-Powered Video Contents Analysis</h1>
+            <p>Extract comprehensive insights from any video using advanced AI tracking and detection.</p>
+            <div class="hero-cta">
+                <a href="#" class="btn btn-primary" onclick="showSignupModal(); return false;">Start Free Trial</a>
+                <a href="#api" class="btn btn-secondary" style="color: white;">View API Docs</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Powerful Video Analysis Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Object Detection & Tracking</h3>
+                    <p>Identify and track objects throughout your video with precise bounding boxes, confidence scores, and motion vectors.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h3>Subtitle Extraction</h3>
+                    <p>Automatically extract and generate accurate subtitles from video audio with timestamp synchronization.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎬</div>
+                    <h3>Scene Change Detection</h3>
+                    <p>Automatically detect scene transitions and key moments in your video content for better segmentation.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎵</div>
+                    <h3>Audio Analysis</h3>
+                    <p>Detect speech patterns, analyze audio quality, and identify speech probability in video segments.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Motion Analytics</h3>
+                    <p>Track object movement with velocity calculations, motion magnitude, and stay duration analysis.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Focus Analysis</h3>
+                    <p>Identify dominant subjects and frame focus centers to understand video composition and viewer attention.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📦</div>
+                    <h3>Bounding Box Coordinates</h3>
+                    <p>Get precise bounding box coordinates in multiple formats for all detected objects throughout your video.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Confidence Score Analysis</h3>
+                    <p>Retrieve detailed confidence scores for all detected objects and features to assess detection accuracy.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎞️</div>
+                    <h3>Frame-by-Frame Analysis</h3>
+                    <p>Comprehensive frame-by-frame analysis with all available data for complete video understanding.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👤</div>
+                    <h3>Dominant Subject Identification</h3>
+                    <p>Identify and track dominant subjects throughout the video to understand main focal points.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title">Simple Credit-Based Pricing</h2>
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3>Professional Plan</h3>
+                    <p>Pay only for what you use with our flexible credit system</p>
+                </div>
+                <div class="pricing-content">
+                    <div class="features-list-container">
+                        <ul class="features-list">
+                            <li>
+                                <span class="feature-name">Object Detection & Tracking</span>
+                                <span class="credit-cost">5 credits/min</span>
+                            </li>
+                            <li>
+                                <span class="feature-name">Subtitle Extraction</span>
+                                <span class="credit-cost">3 credits/min</span>
+                            </li>
+                            <li>
+                                <span class="feature-name">Scene Change Detection</span>
+                                <span class="credit-cost">2 credits/min</span>
+                            </li>
+                            <li>
+                                <span class="feature-name">Audio Speech Analysis</span>
+                                <span class="credit-cost">2 credits/min</span>
+                            </li>
+                            <li>
+                                <span class="feature-name">Motion Vector Analysis</span>
+                                <span class="credit-cost">4 credits/min</span>
+                            </li>
+                            <li>
+                                <span class="feature-name">Focus & Composition Analysis</span>
+                                <span class="credit-cost">3 credits/min</span>
+                            </li>
+                            <li>
+                                <span class="feature-name">Bounding Box Coordinates</span>
+                                <span class="credit-cost">1 credit/min</span>
+                            </li>
+                            <li>
+                                <span class="feature-name">Confidence Score Analysis</span>
+                                <span class="credit-cost">1 credit/min</span>
+                            </li>
+                            <li>
+                                <span class="feature-name">Frame-by-Frame Analysis</span>
+                                <span class="credit-cost">6 credits/min</span>
+                            </li>
+                            <li>
+                                <span class="feature-name">Dominant Subject Identification</span>
+                                <span class="credit-cost">2 credits/min</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="pricing-cta">
+                        <div class="credit-info">
+                            <h4>Flexible Credits</h4>
+                            <p>Credits never expire<br>Volume discounts available<br>Enterprise plans available</p>
+                        </div>
+                        <a href="#" class="btn btn-primary" onclick="showSignupModal(); return false;">Purchase Credits</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- API Section -->
+    <section id="api" class="api-section">
+        <div class="container">
+            <h2 class="section-title">Developer API Documentation</h2>
+            <div class="api-content">
+                <div class="api-endpoint">
+                    <h3>Base Endpoint</h3>
+                    <div class="endpoint-url">
+                        POST https://croply.uk/action=<span style="color: #fbbf24;">{action}</span>&access_key=<span style="color: #fbbf24;">{your_api_key}</span>&video_url=<span style="color: #fbbf24;">{your_video_url}</span>
+                    </div>
+                    <p>All API requests require a valid access key, action parameter, and video URL. The video URL should be a publicly accessible URL to your video file.</p>
+                </div>
+
+                <div class="api-endpoint">
+                    <h3>Code Examples</h3>
+                    <div class="code-tabs">
+                        <button class="tab-button active" onclick="showTab('curl')">cURL</button>
+                        <button class="tab-button" onclick="showTab('php')">PHP</button>
+                        <button class="tab-button" onclick="showTab('nodejs')">Node.js</button>
+                        <button class="tab-button" onclick="showTab('python')">Python</button>
+                    </div>
+
+                    <div id="curl" class="tab-content active">
+                        <textarea id="curl-code">curl -X POST "https://croply.uk/action=object_detection&access_key=YOUR_API_KEY&video_url=https://example.com/video.mp4"</textarea>
+                    </div>
+
+                    <div id="php" class="tab-content">
+                        <textarea id="php-code">
+
+curl_setopt_array($ch = curl_init(), [
+    CURLOPT_URL => 'https://croply.uk/action=object_detection&access_key=YOUR_API_KEY&video_url=https://example.com/video.mp4',
+    CURLOPT_RETURNTRANSFER => 1
+]);
+curl_exec($ch);
+curl_close($ch);
+</textarea>
+                    </div>
+
+                    <div id="nodejs" class="tab-content">
+                        <textarea id="nodejs-code">const axios = require('axios');
+
+const url = 'https://croply.uk/action=scene_detection&access_key=YOUR_API_KEY&video_url=https://example.com/video.mp4';
+
+axios.post(url)
+.then(response => {
+  console.log(response.data);
+})
+.catch(error => {
+  console.error(error);
+});</textarea>
+                    </div>
+
+                    <div id="python" class="tab-content">
+                        <textarea id="python-code">import requests
+
+url = "https://croply.uk/action=motion_analysis&access_key=YOUR_API_KEY&video_url=https://example.com/video.mp4"
+
+response = requests.post(url)
+print(response.json())</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Croply</h3>
+                    <p>Advanced AI-powered video analysis platform for businesses and developers.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Product</h3>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#api">API Documentation</a></li>
+                        <li><a href="#">Enterprise</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Status</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Croply. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <!-- CodeMirror JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/shell/shell.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/php/php.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/python/python.min.js"></script>
+
+    <script>
+        // Initialize CodeMirror editors
+        let editors = {};
+
+        function initializeEditors() {
+            const configs = {
+                'curl-code': { mode: 'shell' },
+                'php-code': { mode: 'php' },
+                'nodejs-code': { mode: 'javascript' },
+                'python-code': { mode: 'python' }
+            };
+
+            Object.keys(configs).forEach(id => {
+                const textarea = document.getElementById(id);
+                if (textarea) {
+                    editors[id] = CodeMirror.fromTextArea(textarea, {
+                        mode: configs[id].mode,
+                        theme: 'github',
+                        lineNumbers: true,
+                        readOnly: true,
+                        lineWrapping: true
+                    });
+                }
+            });
+        }
+
+        function showTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+
+            // Add active class to clicked button
+            event.target.classList.add('active');
+
+            // Refresh CodeMirror editor for the active tab
+            const editorId = tabName + '-code';
+            if (editors[editorId]) {
+                setTimeout(() => {
+                    editors[editorId].refresh();
+                }, 100);
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Check if user is logged in
+        function isLoggedIn() {
+            const token = localStorage.getItem('auth_token');
+            const user = localStorage.getItem('user_data');
+            return token && user;
+        }
+
+        // Get current user data
+        function getCurrentUser() {
+            const userData = localStorage.getItem('user_data');
+            return userData ? JSON.parse(userData) : null;
+        }
+
+        // Update UI based on login status
+        async function updateAuthUI() {
+            const authButtons = document.querySelector('.auth-buttons');
+            if (isLoggedIn()) {
+                const user = getCurrentUser();
+                authButtons.innerHTML = `
+                    <div class="user-menu" style="position: relative;">
+                        <div class="user-avatar">${user.display_name.charAt(0).toUpperCase()}</div>
+                        <div class="user-info">
+                            <div class="user-name">${user.display_name}</div>
+                            <div class="user-email">${user.email}</div>
+                        </div>
+                        <button class="dropdown-btn" onclick="toggleUserDropdown(event)">☰</button>
+                        <div class="dropdown-menu" id="userDropdown">
+                            <div class="dropdown-item">
+                                <span class="dropdown-item-icon">💳</span>
+                                <div class="dropdown-item-content">
+                                    <div class="dropdown-item-label">API Credits</div>
+                                    <div class="dropdown-item-value" id="apiCredits">Loading...</div>
+                                </div>
+                            </div>
+                            <div class="dropdown-item" onclick="copyApiKey()">
+                                <span class="dropdown-item-icon">🔑</span>
+                                <div class="dropdown-item-content">
+                                    <div class="dropdown-item-label">API Access Key</div>
+                                    <div class="dropdown-item-value" id="apiKey" style="font-family: monospace; font-size: 0.75rem;">Loading...</div>
+                                </div>
+                            </div>
+                            <div class="dropdown-item" onclick="regenerateApiKey()">
+                                <span class="dropdown-item-icon">🔄</span>
+                                <div class="dropdown-item-content">
+                                    <div class="dropdown-item-value">Regenerate API Key</div>
+                                </div>
+                            </div>
+                            <div class="dropdown-item logout" onclick="handleLogout()">
+                                <span class="dropdown-item-icon">🚪</span>
+                                <div class="dropdown-item-content">
+                                    <div class="dropdown-item-value">Log Out</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                // Load user info
+                await loadUserInfo();
+            } else {
+                authButtons.innerHTML = `
+                    <a href="#" class="btn btn-secondary" onclick="showLoginModal(); return false;">Login</a>
+                    <a href="#" class="btn btn-primary" onclick="showSignupModal(); return false;">Create Account</a>
+                `;
+            }
+        }
+
+        // Toggle user dropdown
+        function toggleUserDropdown(event) {
+            event.stopPropagation();
+            const dropdown = document.getElementById('userDropdown');
+            if (dropdown) {
+                dropdown.classList.toggle('show');
+            }
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.getElementById('userDropdown');
+            const userMenu = document.querySelector('.user-menu');
+            if (dropdown && userMenu && !userMenu.contains(event.target)) {
+                dropdown.classList.remove('show');
+            }
+        });
+
+        // Load user info (API credits and API key)
+        async function loadUserInfo() {
+            const token = localStorage.getItem('auth_token');
+            if (!token) return;
+
+            try {
+                const response = await fetch('/api/get_user_info', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.success) {
+                        const creditsEl = document.getElementById('apiCredits');
+                        const keyEl = document.getElementById('apiKey');
+                        if (creditsEl) {
+                            creditsEl.textContent = data.api_credits || 0;
+                        }
+                        if (keyEl) {
+                            keyEl.textContent = data.api_key || 'Not available';
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading user info:', error);
+            }
+        }
+
+        // Copy API key to clipboard
+        function copyApiKey() {
+            const keyEl = document.getElementById('apiKey');
+            if (keyEl && keyEl.textContent !== 'Loading...' && keyEl.textContent !== 'Not available') {
+                navigator.clipboard.writeText(keyEl.textContent).then(() => {
+                    Swal.fire({
+                        title: 'Copied!',
+                        text: 'API key copied to clipboard',
+                        icon: 'success',
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
+                });
+            }
+        }
+
+        // Regenerate API key
+        async function regenerateApiKey() {
+            const token = localStorage.getItem('auth_token');
+            if (!token) {
+                Swal.fire({
+                    title: 'Error',
+                    text: 'You must be logged in to regenerate your API key',
+                    icon: 'error'
+                });
+                return;
+            }
+
+            // Confirm regeneration
+            const result = await Swal.fire({
+                title: 'Regenerate API Key?',
+                text: 'Your current API key will be invalidated and a new one will be generated. This action cannot be undone.',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, regenerate',
+                cancelButtonText: 'Cancel',
+                confirmButtonColor: '#ef4444'
+            });
+
+            if (!result.isConfirmed) {
+                return;
+            }
+
+            try {
+                Swal.fire({
+                    title: 'Regenerating...',
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+
+                const response = await fetch('/api/regenerate_api_key', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    // Reload user info to get the new API key
+                    await loadUserInfo();
+                    
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Your API key has been regenerated successfully.',
+                        icon: 'success',
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
+                } else {
+                    throw new Error(data.detail || 'Failed to regenerate API key');
+                }
+            } catch (error) {
+                Swal.fire({
+                    title: 'Error',
+                    text: error.message || 'Failed to regenerate API key. Please try again.',
+                    icon: 'error'
+                });
+            }
+        }
+
+        // Handle logout
+        async function handleLogout() {
+            const token = localStorage.getItem('auth_token');
+            
+            try {
+                // Call logout API if token exists
+                if (token) {
+                    await fetch('/api/logout', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
+                }
+            } catch (error) {
+                console.error('Error during logout:', error);
+            }
+
+            // Clear localStorage
+            localStorage.removeItem('auth_token');
+            localStorage.removeItem('user_data');
+
+            // Clear cookies (client-side accessible ones)
+            document.cookie.split(";").forEach(function(c) {
+                document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+            });
+
+            // Show success message
+            Swal.fire({
+                title: 'Logged Out',
+                text: 'You have been successfully logged out.',
+                icon: 'success',
+                timer: 2000,
+                showConfirmButton: false
+            }).then(() => {
+                // Update UI
+                updateAuthUI();
+            });
+        }
+
+        // Show login modal
+        function showLoginModal() {
+            Swal.fire({
+                title: 'Login',
+                html: `
+                    <input id="swal-login-email" class="swal2-input" type="email" placeholder="Email address" required>
+                    <input id="swal-login-password" class="swal2-input" type="password" placeholder="Password" required>
+                    <div style="text-align: right; margin-top: 0.5rem;">
+                        <a href="#" id="forgot-password-link" style="color: #6366f1; text-decoration: none; font-size: 0.875rem; cursor: pointer;">Forgot password?</a>
+                    </div>
+                `,
+                focusConfirm: false,
+                showCancelButton: true,
+                confirmButtonText: 'Login',
+                cancelButtonText: 'Cancel',
+                didOpen: () => {
+                    // Attach event listener to forgot password link
+                    const forgotLink = document.getElementById('forgot-password-link');
+                    if (forgotLink) {
+                        forgotLink.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            Swal.close();
+                            setTimeout(() => {
+                                showForgotPasswordModal();
+                            }, 100);
+                        });
+                    }
+                },
+                preConfirm: () => {
+                    const email = document.getElementById('swal-login-email').value;
+                    const password = document.getElementById('swal-login-password').value;
+
+                    if (!email) {
+                        Swal.showValidationMessage('Please enter your email address');
+                        return false;
+                    }
+                    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                        Swal.showValidationMessage('Please enter a valid email address');
+                        return false;
+                    }
+                    if (!password) {
+                        Swal.showValidationMessage('Please enter your password');
+                        return false;
+                    }
+
+                    return { email, password };
+                }
+            }).then((result) => {
+                if (result.isConfirmed && result.value) {
+                    loginUser(result.value.email, result.value.password);
+                }
+            });
+        }
+
+        // Show forgot password modal
+        function showForgotPasswordModal() {
+            Swal.fire({
+                title: 'Reset Password',
+                html: `
+                    <p style="text-align: left; margin-bottom: 1rem;">Enter your email address and we'll send you a link to reset your password.</p>
+                    <input id="swal-forgot-email" class="swal2-input" type="email" placeholder="Email address" required>
+                `,
+                focusConfirm: false,
+                showCancelButton: true,
+                confirmButtonText: 'Send Reset Link',
+                cancelButtonText: 'Cancel',
+                preConfirm: () => {
+                    const email = document.getElementById('swal-forgot-email').value;
+                    if (!email) {
+                        Swal.showValidationMessage('Please enter your email address');
+                        return false;
+                    }
+                    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                        Swal.showValidationMessage('Please enter a valid email address');
+                        return false;
+                    }
+                    return email;
+                }
+            }).then((result) => {
+                if (result.isConfirmed && result.value) {
+                    sendPasswordReset(result.value);
+                }
+            });
+        }
+
+        // Send password reset email
+        async function sendPasswordReset(email) {
+            try {
+                Swal.fire({
+                    title: 'Sending reset link...',
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+
+                const response = await fetch('/api/send_password_reset', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email: email })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    Swal.fire({
+                        title: 'Check Your Email',
+                        text: 'If the email exists, a password reset link has been sent. Please check your inbox.',
+                        icon: 'success'
+                    });
+                } else {
+                    throw new Error(data.detail || 'Failed to send password reset link');
+                }
+            } catch (error) {
+                Swal.fire({
+                    title: 'Error',
+                    text: error.message || 'Failed to send password reset link. Please try again.',
+                    icon: 'error'
+                });
+            }
+        }
+
+        // Show password reset form (when token is in URL)
+        function showPasswordResetForm(token) {
+            Swal.fire({
+                title: 'Reset Your Password',
+                html: `
+                    <input id="swal-reset-password" class="swal2-input" type="password" placeholder="New Password" required>
+                    <input id="swal-reset-repeat-password" class="swal2-input" type="password" placeholder="Repeat New Password" required>
+                `,
+                focusConfirm: false,
+                showCancelButton: true,
+                confirmButtonText: 'Reset Password',
+                cancelButtonText: 'Cancel',
+                preConfirm: () => {
+                    const password = document.getElementById('swal-reset-password').value;
+                    const repeatPassword = document.getElementById('swal-reset-repeat-password').value;
+
+                    if (!password || password.length < 6) {
+                        Swal.showValidationMessage('Password must be at least 6 characters');
+                        return false;
+                    }
+                    if (password !== repeatPassword) {
+                        Swal.showValidationMessage('Passwords do not match');
+                        return false;
+                    }
+
+                    return password;
+                }
+            }).then((result) => {
+                if (result.isConfirmed && result.value) {
+                    resetPassword(token, result.value);
+                }
+            });
+        }
+
+        // Reset password
+        async function resetPassword(token, password) {
+            try {
+                Swal.fire({
+                    title: 'Resetting password...',
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+
+                const response = await fetch('/api/reset_password', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        token: token,
+                        password: password
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    // Remove token from URL
+                    const url = new URL(window.location);
+                    url.searchParams.delete('reset_token');
+                    window.history.replaceState({}, '', url);
+                    
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Your password has been reset successfully. Please login with your new password.',
+                        icon: 'success',
+                        confirmButtonText: 'Login'
+                    }).then(() => {
+                        // Show login modal
+                        showLoginModal();
+                    });
+                } else {
+                    throw new Error(data.detail || 'Failed to reset password');
+                }
+            } catch (error) {
+                Swal.fire({
+                    title: 'Reset Failed',
+                    text: error.message || 'Failed to reset password. The link may have expired.',
+                    icon: 'error'
+                });
+            }
+        }
+
+        // Login user
+        async function loginUser(email, password) {
+            try {
+                Swal.fire({
+                    title: 'Logging in...',
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        password: password
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    // Store token and user data
+                    localStorage.setItem('auth_token', data.token);
+                    localStorage.setItem('user_data', JSON.stringify(data.user));
+
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'You have been logged in successfully.',
+                        icon: 'success',
+                        timer: 2000,
+                        showConfirmButton: false
+                    }).then(() => {
+                        // Update UI
+                        updateAuthUI();
+                    });
+                } else {
+                    throw new Error(data.detail || 'Login failed');
+                }
+            } catch (error) {
+                Swal.fire({
+                    title: 'Login Failed',
+                    text: error.message || 'Invalid email or password. Please try again.',
+                    icon: 'error'
+                });
+            }
+        }
+
+        // Show signup modal - Step 1: Email
+        function showSignupModal() {
+            Swal.fire({
+                title: 'Create Account',
+                html: `
+                    <input id="swal-email" class="swal2-input" type="email" placeholder="Email address" required>
+                `,
+                focusConfirm: false,
+                showCancelButton: true,
+                confirmButtonText: 'Next',
+                cancelButtonText: 'Cancel',
+                preConfirm: () => {
+                    const email = document.getElementById('swal-email').value;
+                    if (!email) {
+                        Swal.showValidationMessage('Please enter your email address');
+                        return false;
+                    }
+                    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                        Swal.showValidationMessage('Please enter a valid email address');
+                        return false;
+                    }
+                    return email;
+                }
+            }).then((result) => {
+                if (result.isConfirmed && result.value) {
+                    sendVerificationCode(result.value);
+                }
+            });
+        }
+
+        // Send verification code
+        async function sendVerificationCode(email) {
+            try {
+                Swal.fire({
+                    title: 'Sending verification code...',
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+
+                const response = await fetch('/api/send_email_verification_code', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email: email })
+                });
+
+                console.log('Response status:', response.status);
+                console.log('Response headers:', Object.fromEntries(response.headers.entries()));
+
+                // Get response text first to see what we're getting
+                const responseText = await response.text();
+                console.log('Response text:', responseText);
+
+                let data = {};
+                try {
+                    if (responseText) {
+                        data = JSON.parse(responseText);
+                    } else {
+                        throw new Error('Empty response from server');
+                    }
+                } catch (parseError) {
+                    console.error('JSON parse error:', parseError);
+                    console.error('Response text was:', responseText);
+                    throw new Error('Invalid JSON response from server. Check console for details.');
+                }
+
+                if (response.ok && data.success) {
+                    Swal.close();
+                    showRegistrationForm(email);
+                } else {
+                    throw new Error(data.detail || data.message || 'Failed to send verification code');
+                }
+            } catch (error) {
+                Swal.fire({
+                    title: 'Error',
+                    text: error.message || 'Failed to send verification code. Please try again.',
+                    icon: 'error'
+                });
+            }
+        }
+
+        // Show registration form - Step 2: Complete registration
+        function showRegistrationForm(email) {
+            Swal.fire({
+                title: 'Complete Registration',
+                html: `
+                    <input id="swal-display-name" class="swal2-input" type="text" placeholder="Display Name" required>
+                    <input id="swal-verification-code" class="swal2-input" type="text" placeholder="Verification Code" maxlength="6" required>
+                    <input id="swal-password" class="swal2-input" type="password" placeholder="Password" required>
+                    <input id="swal-repeat-password" class="swal2-input" type="password" placeholder="Repeat Password" required>
+                    <p style="font-size: 0.875rem; color: #64748b; margin-top: 0.5rem;">
+                        Verification code sent to: <strong>${email}</strong>
+                    </p>
+                `,
+                focusConfirm: false,
+                showCancelButton: true,
+                confirmButtonText: 'Create Account',
+                cancelButtonText: 'Cancel',
+                preConfirm: () => {
+                    const displayName = document.getElementById('swal-display-name').value;
+                    const code = document.getElementById('swal-verification-code').value;
+                    const password = document.getElementById('swal-password').value;
+                    const repeatPassword = document.getElementById('swal-repeat-password').value;
+
+                    if (!displayName) {
+                        Swal.showValidationMessage('Please enter your display name');
+                        return false;
+                    }
+                    if (!code || code.length !== 6) {
+                        Swal.showValidationMessage('Please enter the 6-digit verification code');
+                        return false;
+                    }
+                    if (!password || password.length < 6) {
+                        Swal.showValidationMessage('Password must be at least 6 characters');
+                        return false;
+                    }
+                    if (password !== repeatPassword) {
+                        Swal.showValidationMessage('Passwords do not match');
+                        return false;
+                    }
+
+                    return { displayName, code, password };
+                }
+            }).then((result) => {
+                if (result.isConfirmed && result.value) {
+                    registerUser(email, result.value.displayName, result.value.code, result.value.password);
+                }
+            });
+        }
+
+        // Register user
+        async function registerUser(email, displayName, code, password) {
+            try {
+                Swal.fire({
+                    title: 'Creating your account...',
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+
+                const response = await fetch('/api/register_user', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        code: code,
+                        display_name: displayName,
+                        password: password
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    // Store token and user data
+                    localStorage.setItem('auth_token', data.token);
+                    localStorage.setItem('user_data', JSON.stringify(data.user));
+
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Your account has been created successfully.',
+                        icon: 'success',
+                        confirmButtonText: 'Get Started'
+                    }).then(() => {
+                        // Update UI
+                        updateAuthUI();
+                    });
+                } else {
+                    throw new Error(data.detail || 'Registration failed');
+                }
+            } catch (error) {
+                Swal.fire({
+                    title: 'Registration Failed',
+                    text: error.message || 'Failed to create account. Please try again.',
+                    icon: 'error'
+                });
+            }
+        }
+
+        // Check for password reset token in URL
+        function checkPasswordResetToken() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const resetToken = urlParams.get('reset_token');
+            
+            if (resetToken) {
+                // Show password reset form
+                showPasswordResetForm(resetToken);
+            }
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeEditors();
+            updateAuthUI();
+            checkPasswordResetToken();
+        });
+    </script>
+</body>
+</html>
