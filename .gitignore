@@ -13,15 +13,12 @@ Croply.sql
 backend/python/packages
 backend/python/venv
 
-# Build/Caddy
-backend/caddy/production
-
-# Storage (Ignore all files except .gitkeep)
-**/storage/videos_awaiting_reframe/*
-!**/storage/videos_awaiting_reframe/.gitkeep
-
-**/storage/videos_reframed/*
-!**/storage/videos_reframed/.gitkeep
+# Storage
+**/storage/*
+!**/storage/.gitkeep
+**/storage/**/*
+!**/storage/**/
+!**/storage/**/.gitkeep
 
 # Analysis Cache
 backend/python/.cache/*
@@ -29,6 +26,7 @@ backend/python/.cache/*
 
 # YOLO model weights
 **/models/*
+!**/models/.gitkeep
 *.pt
 *.onnx
 
