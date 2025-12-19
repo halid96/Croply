@@ -81,7 +81,7 @@ async def get_user_info(authorization: str = Header(None)) -> Dict[str, Any]:
         if not result:
             raise HTTPException(status_code=404, detail="User not found")
         
-        api_credits = result[0] or 0
+        api_credits = float(result[0]) if result[0] is not None else 0.00
         encrypted_api_key = result[1]
         
         # Decrypt API key
@@ -96,7 +96,7 @@ async def get_user_info(authorization: str = Header(None)) -> Dict[str, Any]:
         
         return JSONResponse(content={
             "success": True,
-            "api_credits": api_credits,
+            "balance": api_credits,  # Return as 'balance' for frontend consistency
             "api_key": api_key
         }, status_code=200)
         

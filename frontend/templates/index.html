@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Croply - AI-Powered Video Analysis Platform | Extract Insights from Any Video</title>
-    <meta name="description" content="Croply uses advanced AI and YOLO v8 to analyze videos, extract subtitles, detect objects, track motion, and provide comprehensive video insights for businesses.">
-    <meta name="keywords" content="video analysis, AI video processing, YOLO v8, object detection, video analytics, subtitle extraction, motion tracking">
-    <meta property="og:title" content="Croply - AI-Powered Video Analysis Platform">
-    <meta property="og:description" content="Extract comprehensive insights from videos using advanced AI. Object detection, motion tracking, subtitle extraction, and more.">
+    <title>Croply - B2B AI-Powered Video Reframing Platform | Automatically Reframe Videos with AI</title>
+    <meta name="description" content="Croply uses advanced AI to automatically reframe videos, intelligently adjusting framing and composition for optimal viewing on any device or platform.">
+    <meta name="keywords" content="video reframing, AI video processing, automatic video reframing, video composition, AI video editing, smart video cropping">
+    <meta property="og:title" content="Croply - AI-Powered Video Reframing Platform">
+    <meta property="og:description" content="Automatically reframe videos with advanced AI. Intelligent framing and composition adjustment for optimal viewing on any device.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://croply.uk">
     <link rel="canonical" href="https://croply.uk">
@@ -15,7 +15,9 @@
     
     <!-- CodeMirror CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/github.min.css">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.65.2/lib/codemirror.min.css">
+    ">
     
     <style>
         * {
@@ -506,6 +508,70 @@
             font-size: 0.875rem;
         }
 
+        /* FAQ Section */
+        .faq-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .faq-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            font-weight: 600;
+            color: #1e293b;
+            font-size: 1.125rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+
+        .faq-question:hover {
+            background: #f8fafc;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            color: #64748b;
+            line-height: 1.7;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 1.5rem 1.5rem 1.5rem;
+        }
+
+        .faq-icon {
+            font-size: 1.25rem;
+            color: #6366f1;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
         /* Footer */
         footer {
             background: #1e293b;
@@ -583,6 +649,7 @@
                 <li><a href="#features">Features</a></li>
                 <li><a href="#pricing">Pricing</a></li>
                 <li><a href="#api">API</a></li>
+                <li><a href="#faq">FAQ</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="auth-buttons">
@@ -595,8 +662,9 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>AI-Powered Video Contents Analysis</h1>
-            <p>Extract comprehensive insights from any video using advanced AI tracking and detection.</p>
+            <h1>AI-Powered Video Reframe API for businesses</h1>
+            <p>Turn any video into perfect TikTok, Reels & Shorts – AI auto-reframes, tracks, and focuses on the main subject in videos.</p>
+            <p style="font-size: 0.9rem; opacity: 0.85; margin-top: 0.5rem;">✨ Managed SaaS API service for B2B (Business-to-Business)</p>
             <div class="hero-cta">
                 <a href="#" class="btn btn-primary" onclick="showSignupModal(); return false;">Start Free Trial</a>
                 <a href="#api" class="btn btn-secondary" style="color: white;">View API Docs</a>
@@ -607,57 +675,52 @@
     <!-- Features Section -->
     <section id="features" class="features">
         <div class="container">
-            <h2 class="section-title">Powerful Video Analysis Features</h2>
+            <h2 class="section-title">Intelligent Video Reframing Features</h2>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">🎯</div>
-                    <h3>Object Detection & Tracking</h3>
-                    <p>Identify and track objects throughout your video with precise bounding boxes, confidence scores, and motion vectors.</p>
+                    <h3>AI-Powered Framing</h3>
+                    <p>Advanced AI automatically detects and tracks subjects, intelligently adjusting the frame to keep important elements in focus.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">📝</div>
-                    <h3>Subtitle Extraction</h3>
-                    <p>Automatically extract and generate accurate subtitles from video audio with timestamp synchronization.</p>
+                    <div class="feature-icon">📱</div>
+                    <h3>Multi-Format Support</h3>
+                    <p>Reframe videos for any aspect ratio or device - from vertical mobile videos to widescreen cinematic formats.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🎬</div>
-                    <h3>Scene Change Detection</h3>
-                    <p>Automatically detect scene transitions and key moments in your video content for better segmentation.</p>
+                    <h3>Smart Composition</h3>
+                    <p>Maintains professional composition rules like rule of thirds, ensuring your reframed videos look polished and balanced.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🎵</div>
-                    <h3>Audio Analysis</h3>
-                    <p>Detect speech patterns, analyze audio quality, and identify speech probability in video segments.</p>
+                    <div class="feature-icon">⚡</div>
+                    <h3>Fast Processing</h3>
+                    <p>Process videos quickly with our optimized AI pipeline, delivering reframed results in minutes, not hours.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3>Motion Analytics</h3>
-                    <p>Track object movement with velocity calculations, motion magnitude, and stay duration analysis.</p>
+                    <div class="feature-icon">🎨</div>
+                    <h3>Seamless Transitions</h3>
+                    <p>Smooth frame adjustments that maintain visual continuity, avoiding jarring cuts or sudden movements.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Focus Analysis</h3>
-                    <p>Identify dominant subjects and frame focus centers to understand video composition and viewer attention.</p>
+                    <div class="feature-icon">🔍</div>
+                    <h3>Subject Tracking</h3>
+                    <p>Intelligently tracks multiple subjects, ensuring all important elements remain visible and well-framed throughout the video.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">📦</div>
-                    <h3>Bounding Box Coordinates</h3>
-                    <p>Get precise bounding box coordinates in multiple formats for all detected objects throughout your video.</p>
+                    <div class="feature-icon">📐</div>
+                    <h3>Custom Aspect Ratios</h3>
+                    <p>Reframe to any aspect ratio you need - 16:9, 9:16, 1:1, 4:3, or custom dimensions for your specific use case.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">📈</div>
-                    <h3>Confidence Score Analysis</h3>
-                    <p>Retrieve detailed confidence scores for all detected objects and features to assess detection accuracy.</p>
+                    <div class="feature-icon">🌐</div>
+                    <h3>API Integration</h3>
+                    <p>Easy-to-use REST API for seamless integration into your existing workflows and applications.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🎞️</div>
-                    <h3>Frame-by-Frame Analysis</h3>
-                    <p>Comprehensive frame-by-frame analysis with all available data for complete video understanding.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">👤</div>
-                    <h3>Dominant Subject Identification</h3>
-                    <p>Identify and track dominant subjects throughout the video to understand main focal points.</p>
+                    <div class="feature-icon">💾</div>
+                    <h3>High Quality Output</h3>
+                    <p>Maintains original video quality while reframing, ensuring your content looks professional and crisp.</p>
                 </div>
             </div>
         </div>
@@ -676,53 +739,17 @@
                     <div class="features-list-container">
                         <ul class="features-list">
                             <li>
-                                <span class="feature-name">Object Detection & Tracking</span>
-                                <span class="credit-cost">5 credits/min</span>
-                            </li>
-                            <li>
-                                <span class="feature-name">Subtitle Extraction</span>
-                                <span class="credit-cost">3 credits/min</span>
-                            </li>
-                            <li>
-                                <span class="feature-name">Scene Change Detection</span>
-                                <span class="credit-cost">2 credits/min</span>
-                            </li>
-                            <li>
-                                <span class="feature-name">Audio Speech Analysis</span>
-                                <span class="credit-cost">2 credits/min</span>
-                            </li>
-                            <li>
-                                <span class="feature-name">Motion Vector Analysis</span>
-                                <span class="credit-cost">4 credits/min</span>
-                            </li>
-                            <li>
-                                <span class="feature-name">Focus & Composition Analysis</span>
-                                <span class="credit-cost">3 credits/min</span>
-                            </li>
-                            <li>
-                                <span class="feature-name">Bounding Box Coordinates</span>
-                                <span class="credit-cost">1 credit/min</span>
-                            </li>
-                            <li>
-                                <span class="feature-name">Confidence Score Analysis</span>
-                                <span class="credit-cost">1 credit/min</span>
-                            </li>
-                            <li>
-                                <span class="feature-name">Frame-by-Frame Analysis</span>
-                                <span class="credit-cost">6 credits/min</span>
-                            </li>
-                            <li>
-                                <span class="feature-name">Dominant Subject Identification</span>
-                                <span class="credit-cost">2 credits/min</span>
+                                <span class="feature-name">AI Video Reframing</span>
+                                <span class="credit-cost">£0.10 / min</span>
                             </li>
                         </ul>
                     </div>
                     <div class="pricing-cta">
                         <div class="credit-info">
-                            <h4>Flexible Credits</h4>
-                            <p>Credits never expire<br>Volume discounts available<br>Enterprise plans available</p>
+                            <h4>Simple Pricing</h4>
+                            <p>£0.10 per minute of video<br>Minimum £0.10 per video<br>Pay only for what you use<br>Enterprise plans available</p>
                         </div>
-                        <a href="#" class="btn btn-primary" onclick="showSignupModal(); return false;">Purchase Credits</a>
+                        <a href="https://buy.stripe.com/fZuaEX7Lqfeyd1O1Xwgw00R" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Buy Credits</a>
                     </div>
                 </div>
             </div>
@@ -735,11 +762,135 @@
             <h2 class="section-title">Developer API Documentation</h2>
             <div class="api-content">
                 <div class="api-endpoint">
-                    <h3>Base Endpoint</h3>
+                    <h3>API 1: Submit Reframe Job</h3>
                     <div class="endpoint-url">
-                        POST https://croply.uk/action=<span style="color: #fbbf24;">{action}</span>&access_key=<span style="color: #fbbf24;">{your_api_key}</span>&video_url=<span style="color: #fbbf24;">{your_video_url}</span>
+                        POST https://croply.uk/api/v1/reframe
                     </div>
-                    <p>All API requests require a valid access key, action parameter, and video URL. The video URL should be a publicly accessible URL to your video file.</p>
+                    <p><strong>Parameters:</strong></p>
+                    <ul style="list-style: none; padding-left: 0; margin-top: 0.5rem;">
+                        <li style="margin-bottom: 0.5rem;"><code style="background: #f1f5f9; padding: 0.25rem 0.5rem; border-radius: 4px;">callback_url</code> - URL to receive job completion notification.</li>
+                        <li style="margin-bottom: 0.5rem;"><code style="background: #f1f5f9; padding: 0.25rem 0.5rem; border-radius: 4px;">video_url</code> - Public URL to the video file (required)</li>
+                        <li style="margin-bottom: 0.5rem;"><code style="background: #f1f5f9; padding: 0.25rem 0.5rem; border-radius: 4px;">api_key</code> - Your API access key (required)</li>
+                    </ul>
+                    <p style="margin-top: 1rem;"><strong>Response:</strong> Returns JSON with either <code style="background: #f1f5f9; padding: 0.25rem 0.5rem; border-radius: 4px;">job_id</code> or <code style="background: #f1f5f9; padding: 0.25rem 0.5rem; border-radius: 4px;">error</code> field.</p>
+                </div>
+
+                <div class="api-endpoint">
+                    <h3>API 2: Check Job Status</h3>
+                    <div class="endpoint-url">
+                        GET https://croply.uk/api/v1/job_status?job_id=<span style="color: #fbbf24;">{job_id}</span>&api_key=<span style="color: #fbbf24;">{your_api_key}</span>
+                    </div>
+                    <p><strong>Parameters:</strong></p>
+                    <ul style="list-style: none; padding-left: 0; margin-top: 0.5rem;">
+                        <li style="margin-bottom: 0.5rem;"><code style="background: #f1f5f9; padding: 0.25rem 0.5rem; border-radius: 4px;">job_id</code> - The job ID returned from the reframe API (required)</li>
+                        <li style="margin-bottom: 0.5rem;"><code style="background: #f1f5f9; padding: 0.25rem 0.5rem; border-radius: 4px;">api_key</code> - Your API access key (required)</li>
+                    </ul>
+                    <p style="margin-top: 1rem;"><strong>Response Fields:</strong></p>
+                    <ul style="list-style: none; padding-left: 0; margin-top: 0.5rem;">
+                        <li style="margin-bottom: 0.5rem;"><code style="background: #f1f5f9; padding: 0.25rem 0.5rem; border-radius: 4px;">job_id</code> - The unique job identifier</li>
+                        <li style="margin-bottom: 0.5rem;"><code style="background: #f1f5f9; padding: 0.25rem 0.5rem; border-radius: 4px;">status</code> - Current job status (in_queue, processing, success, or failed)</li>
+                        <li style="margin-bottom: 0.5rem;"><code style="background: #f1f5f9; padding: 0.25rem 0.5rem; border-radius: 4px;">callback_url</code> - The callback URL you provided</li>
+                        <li style="margin-bottom: 0.5rem;"><code style="background: #f1f5f9; padding: 0.25rem 0.5rem; border-radius: 4px;">job_started_unix</code> - Unix timestamp when job started processing</li>
+                        <li style="margin-bottom: 0.5rem;"><code style="background: #f1f5f9; padding: 0.25rem 0.5rem; border-radius: 4px;">job_completed_unix</code> - Unix timestamp when job completed</li>
+                        <li style="margin-bottom: 0.5rem;"><code style="background: #f1f5f9; padding: 0.25rem 0.5rem; border-radius: 4px;">error_message</code> - Error message if job failed (null otherwise)</li>
+                        <li style="margin-bottom: 0.5rem;"><code style="background: #f1f5f9; padding: 0.25rem 0.5rem; border-radius: 4px;">reframed_video_url</code> - URL to download the reframed video (if successful)</li>
+                        <li style="margin-bottom: 0.5rem;"><code style="background: #f1f5f9; padding: 0.25rem 0.5rem; border-radius: 4px;">callback_response_error</code> - Error returned by your callback endpoint (null if no error)</li>
+                        <li style="margin-bottom: 0.5rem;"><code style="background: #f1f5f9; padding: 0.25rem 0.5rem; border-radius: 4px;">failed_callbacks_count</code> - Number of failed webhook delivery attempts</li>
+                        <li style="margin-bottom: 0.5rem;"><code style="background: #f1f5f9; padding: 0.25rem 0.5rem; border-radius: 4px;">last_callback_unix</code> - Unix timestamp of last webhook attempt</li>
+                    </ul>
+                     <p style="margin-top: 1rem;"><strong>Status Values:</strong></p>
+                     <ul style="list-style: none; padding-left: 0; margin-top: 0.5rem;">
+                        <li style="margin-bottom: 0.5rem;"><code style="background: #f1f5f9; padding: 0.25rem 0.5rem; border-radius: 4px;">in_queue</code> - Job is waiting to be processed</li>
+                        <li style="margin-bottom: 0.5rem;"><code style="background: #f1f5f9; padding: 0.25rem 0.5rem; border-radius: 4px;">processing</code> - Job is currently being processed</li>
+                        <li style="margin-bottom: 0.5rem;"><code style="background: #f1f5f9; padding: 0.25rem 0.5rem; border-radius: 4px;">success</code> - Job completed successfully</li>
+                        <li style="margin-bottom: 0.5rem;"><code style="background: #f1f5f9; padding: 0.25rem 0.5rem; border-radius: 4px;">failed</code> - Job failed</li>
+                    </ul>
+                </div>
+
+                <div class="api-endpoint">
+                    <h3>Callbacks / Webhooks</h3>
+                    <p>When you provide a <code style="background: #f1f5f9; padding: 0.25rem 0.5rem; border-radius: 4px;">callback_url</code> in your reframe request, we will send a POST request to that URL when the job completes (either successfully or with an error).</p>
+                    
+                    <p style="margin-top: 1rem;"><strong>Webhook Behavior:</strong></p>
+                    <ul style="list-style: disc; padding-left: 1.5rem; margin-top: 0.5rem;">
+                        <li style="margin-bottom: 0.5rem;">We send a <strong>POST</strong> request to your callback URL</li>
+                        <li style="margin-bottom: 0.5rem;">We expect a <strong>200 OK</strong> HTTP response code to acknowledge receipt</li>
+                        <li style="margin-bottom: 0.5rem;">If we don't receive HTTP 200, we retry within 10 mins up to 3 times</li>
+                        <li style="margin-bottom: 0.5rem;">Once HTTP 200 is received, we <strong>do not retry</strong> (even if your response contains an error)</li>
+                    </ul>
+
+                    <p style="margin-top: 1rem;"><strong>Webhook Payload:</strong></p>
+                    <p>The POST request body contains the same JSON fields as the Job Status API response:</p>
+                    <ul style="list-style: none; padding-left: 0; margin-top: 0.5rem;">
+                        <li style="margin-bottom: 0.5rem;"><code style="background: #f1f5f9; padding: 0.25rem 0.5rem; border-radius: 4px;">status</code> - Current job status (in_queue, success, or failed)</li>
+                        <li style="margin-bottom: 0.5rem;"><code style="background: #f1f5f9; padding: 0.25rem 0.5rem; border-radius: 4px;">job_id</code> - The unique job identifier</li>
+                        <li style="margin-bottom: 0.5rem;"><code style="background: #f1f5f9; padding: 0.25rem 0.5rem; border-radius: 4px;">callback_url</code> - The callback URL you provided</li>
+                        <li style="margin-bottom: 0.5rem;"><code style="background: #f1f5f9; padding: 0.25rem 0.5rem; border-radius: 4px;">job_started_unix</code> - Unix timestamp when job started processing</li>
+                        <li style="margin-bottom: 0.5rem;"><code style="background: #f1f5f9; padding: 0.25rem 0.5rem; border-radius: 4px;">job_completed_unix</code> - Unix timestamp when job completed</li>
+                        <li style="margin-bottom: 0.5rem;"><code style="background: #f1f5f9; padding: 0.25rem 0.5rem; border-radius: 4px;">error_message</code> - Error message if job failed (null otherwise)</li>
+                        <li style="margin-bottom: 0.5rem;"><code style="background: #f1f5f9; padding: 0.25rem 0.5rem; border-radius: 4px;">reframed_video_url</code> - URL to download the reframed video (if successful)</li>
+                    </ul>
+
+                    <p style="margin-top: 1rem;"><strong>Your Response Format:</strong></p>
+                    <p>Your callback endpoint should always return HTTP 200 to acknowledge receipt. You can optionally return a JSON response to report processing errors:</p>
+                    <ul style="list-style: none; padding-left: 0; margin-top: 0.5rem;">
+                        <li style="margin-bottom: 0.5rem;"><code style="background: #f1f5f9; padding: 0.25rem 0.5rem; border-radius: 4px;">success</code> - boolean - true if you processed the callback successfully</li>
+                        <li style="margin-bottom: 0.5rem;"><code style="background: #f1f5f9; padding: 0.25rem 0.5rem; border-radius: 4px;">error</code> - string (optional) - error code if success is false</li>
+                        <li style="margin-bottom: 0.5rem;"><code style="background: #f1f5f9; padding: 0.25rem 0.5rem; border-radius: 4px;">error_message</code> - string (optional) - human-readable error message</li>
+                    </ul>
+                    <p style="margin-top: 0.5rem; color: #64748b; font-size: 0.875rem;">Note: We record your error response for debugging purposes but do not retry the webhook.</p>
+
+                    <p style="margin-top: 1rem;"><strong>Example Webhook Handler (Node.js):</strong></p>
+                    <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; margin-top: 0.5rem;"><code>app.post('/webhook/croply', async (req, res) => {
+  const { status, job_id, reframed_video_url, error_message } = req.body;
+  
+  try {
+    if (status === 'success') {
+      console.log(`Job ${job_id} completed: ${reframed_video_url}`);
+      // Download and process the reframed video
+      await downloadVideo(reframed_video_url);
+    } else if (status === 'failed') {
+      console.error(`Job ${job_id} failed: ${error_message}`);
+    }
+    
+    // Return 200 OK with success
+    res.status(200).json({ success: true });
+  } catch (err) {
+    // Return 200 OK but report the error (Croply will record it)
+    res.status(200).json({ 
+      success: false, 
+      error: 'processing_failed',
+      error_message: err.message 
+    });
+  }
+});</code></pre>
+
+                    <p style="margin-top: 1rem;"><strong>Example Webhook Handler (PHP):</strong></p>
+                    <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; margin-top: 0.5rem;"><code>&lt;?php
+// Always return 200 to acknowledge receipt
+http_response_code(200);
+header('Content-Type: application/json');
+
+$payload = json_decode(file_get_contents('php://input'), true);
+$jobId = $payload['job_id'] ?? null;
+$status = $payload['status'] ?? null;
+
+try {
+    if ($status === 'success') {
+        // Download the reframed video
+        $videoUrl = $payload['reframed_video_url'];
+        // ... your download logic
+    }
+    
+    echo json_encode(['success' => true]);
+} catch (Exception $e) {
+    // Report error but don't change HTTP status (still 200)
+    echo json_encode([
+        'success' => false,
+        'error' => 'processing_failed',
+        'error_message' => $e->getMessage()
+    ]);
+}</code></pre>
                 </div>
 
                 <div class="api-endpoint">
@@ -752,42 +903,139 @@
                     </div>
 
                     <div id="curl" class="tab-content active">
-                        <textarea id="curl-code">curl -X POST "https://croply.uk/action=object_detection&access_key=YOUR_API_KEY&video_url=https://example.com/video.mp4"</textarea>
+                        <textarea id="curl-code"># Submit reframe job
+curl -X POST "https://croply.uk/api/v1/reframe" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "api_key": "YOUR_API_KEY",
+    "video_url": "https://example.com/video.mp4",
+    "callback_url": "https://your-domain.com/webhook"
+  }'
+
+# Check job status
+curl "https://croply.uk/api/v1/job_status?job_id=YOUR_JOB_ID&api_key=YOUR_API_KEY"</textarea>
                     </div>
 
                     <div id="php" class="tab-content">
-                        <textarea id="php-code">
-
-curl_setopt_array($ch = curl_init(), [
-    CURLOPT_URL => 'https://croply.uk/action=object_detection&access_key=YOUR_API_KEY&video_url=https://example.com/video.mp4',
-    CURLOPT_RETURNTRANSFER => 1
+                        <textarea id="php-code">// Submit reframe job
+$ch = curl_init('https://croply.uk/api/v1/reframe');
+curl_setopt_array($ch, [
+    CURLOPT_POST => true,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_HTTPHEADER => ['Content-Type: application/json'],
+    CURLOPT_POSTFIELDS => json_encode([
+        'api_key' => 'YOUR_API_KEY',
+        'video_url' => 'https://example.com/video.mp4',
+        'callback_url' => 'https://your-domain.com/webhook'
+    ])
 ]);
-curl_exec($ch);
+$response = curl_exec($ch);
 curl_close($ch);
-</textarea>
+$result = json_decode($response, true);
+$jobId = $result['job_id'];
+
+// Check job status
+$ch = curl_init("https://croply.uk/api/v1/job_status?job_id=" . $jobId . "&api_key=YOUR_API_KEY");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$statusResponse = curl_exec($ch);
+curl_close($ch);
+$status = json_decode($statusResponse, true);</textarea>
                     </div>
 
                     <div id="nodejs" class="tab-content">
                         <textarea id="nodejs-code">const axios = require('axios');
 
-const url = 'https://croply.uk/action=scene_detection&access_key=YOUR_API_KEY&video_url=https://example.com/video.mp4';
+// Submit reframe job
+async function submitReframeJob() {
+  const response = await axios.post('https://croply.uk/api/v1/reframe', {
+    api_key: 'YOUR_API_KEY',
+    video_url: 'https://example.com/video.mp4',
+    callback_url: 'https://your-domain.com/webhook'
+  });
+  
+  const jobId = response.data.job_id;
+  console.log('Job ID:', jobId);
+  
+  // Check job status
+  const statusResponse = await axios.get(`https://croply.uk/api/v1/job_status?job_id=${jobId}&api_key=YOUR_API_KEY`);
+  console.log('Status:', statusResponse.data);
+}
 
-axios.post(url)
-.then(response => {
-  console.log(response.data);
-})
-.catch(error => {
-  console.error(error);
-});</textarea>
+submitReframeJob();</textarea>
                     </div>
 
                     <div id="python" class="tab-content">
                         <textarea id="python-code">import requests
 
-url = "https://croply.uk/action=motion_analysis&access_key=YOUR_API_KEY&video_url=https://example.com/video.mp4"
+# Submit reframe job
+response = requests.post('https://croply.uk/api/v1/reframe', json={
+    'api_key': 'YOUR_API_KEY',
+    'video_url': 'https://example.com/video.mp4',
+    'callback_url': 'https://your-domain.com/webhook'
+})
 
-response = requests.post(url)
-print(response.json())</textarea>
+result = response.json()
+job_id = result['job_id']
+print(f'Job ID: {job_id}')
+
+# Check job status
+status_response = requests.get(f'https://croply.uk/api/v1/job_status?job_id={job_id}&api_key=YOUR_API_KEY')
+status = status_response.json()
+print(f'Status: {status}')</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq-section">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-content">
+                                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Can I use this commercially?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, absolutely. You retain full ownership and commercial rights to all videos processed through our platform. Whether you are an agency, business, or creator, you are free to use, distribute, and monetize your reframed content without any restrictions.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>How does the billing work?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We operate on a simple pay-as-you-go model. You top up your account balance, and we deduct £0.10 for every minute of video processed. There is a minimum charge of £0.10 per video. Your balance never expires.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Do you offer enterprise plans?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! For businesses with high-volume needs, we offer custom enterprise plans with dedicated support, SLA guarantees, and volume-based pricing. Contact our sales team to discuss your specific requirements.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Is my video data secure?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Security is our top priority. All video data is processed in secure, isolated environments and is automatically deleted after processing. We use enterprise-grade encryption for all data in transit and at rest.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Can I integrate Croply into my own app?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely. Croply was built API-first. Our robust REST API allows you to seamlessly integrate our video reframing capabilities directly into your applications, workflows, or content management systems.</p>
                     </div>
                 </div>
             </div>
@@ -800,7 +1048,7 @@ print(response.json())</textarea>
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Croply</h3>
-                    <p>Advanced AI-powered video analysis platform for businesses and developers.</p>
+                    <p>Advanced AI-powered video reframing platform for businesses and developers.</p>
                 </div>
                 <div class="footer-section">
                     <h3>Product</h3>
@@ -817,7 +1065,7 @@ print(response.json())</textarea>
                         <li><a href="#">About Us</a></li>
                         <li><a href="#">Blog</a></li>
                         <li><a href="#">Careers</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="#" onclick="showContactModal(); return false;">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -825,8 +1073,8 @@ print(response.json())</textarea>
                     <ul>
                         <li><a href="#">Help Center</a></li>
                         <li><a href="#">Status</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="/privacy-policy">Privacy Policy</a></li>
+                        <li><a href="/terms-of-service">Terms of Service</a></li>
                     </ul>
                 </div>
             </div>
@@ -863,7 +1111,7 @@ print(response.json())</textarea>
                 if (textarea) {
                     editors[id] = CodeMirror.fromTextArea(textarea, {
                         mode: configs[id].mode,
-                        theme: 'github',
+                        theme: 'default',
                         lineNumbers: true,
                         readOnly: true,
                         lineWrapping: true
@@ -942,8 +1190,8 @@ print(response.json())</textarea>
                             <div class="dropdown-item">
                                 <span class="dropdown-item-icon">💳</span>
                                 <div class="dropdown-item-content">
-                                    <div class="dropdown-item-label">API Credits</div>
-                                    <div class="dropdown-item-value" id="apiCredits">Loading...</div>
+                                    <div class="dropdown-item-label">Balance</div>
+                                    <div class="dropdown-item-value" id="userBalance">Loading...</div>
                                 </div>
                             </div>
                             <div class="dropdown-item" onclick="copyApiKey()">
@@ -1012,10 +1260,11 @@ print(response.json())</textarea>
                 if (response.ok) {
                     const data = await response.json();
                     if (data.success) {
-                        const creditsEl = document.getElementById('apiCredits');
+                        const balanceEl = document.getElementById('userBalance');
                         const keyEl = document.getElementById('apiKey');
-                        if (creditsEl) {
-                            creditsEl.textContent = data.api_credits || 0;
+                        if (balanceEl) {
+                            const balance = data.balance !== undefined ? data.balance : (data.api_credits || 0);
+                            balanceEl.textContent = '£' + parseFloat(balance).toFixed(2);
                         }
                         if (keyEl) {
                             keyEl.textContent = data.api_key || 'Not available';
@@ -1484,7 +1733,7 @@ print(response.json())</textarea>
                     Swal.close();
                     showRegistrationForm(email);
                 } else {
-                    throw new Error(data.detail || data.message || 'Failed to send verification code');
+                    throw new Error(data.detail || 'Failed to send verification code');
                 }
             } catch (error) {
                 Swal.fire({
@@ -1494,6 +1743,93 @@ print(response.json())</textarea>
                 });
             }
         }
+
+        // Show contact modal
+        function showContactModal() {
+            const user = getCurrentUser();
+            const emailValue = user ? user.email : '';
+            
+            Swal.fire({
+                title: 'Contact Us',
+                html: `
+                    <input id="swal-contact-email" class="swal2-input" type="email" placeholder="Your Email" value="${emailValue}" required>
+                    <input id="swal-contact-title" class="swal2-input" type="text" placeholder="Title" required>
+                    <textarea id="swal-contact-subject" class="swal2-textarea" placeholder="Subject/Message" style="height: 150px;" required></textarea>
+                `,
+                focusConfirm: false,
+                showCancelButton: true,
+                confirmButtonText: 'Send Message',
+                cancelButtonText: 'Cancel',
+                preConfirm: () => {
+                    const email = document.getElementById('swal-contact-email').value;
+                    const title = document.getElementById('swal-contact-title').value;
+                    const subject = document.getElementById('swal-contact-subject').value;
+
+                    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                        Swal.showValidationMessage('Please enter a valid email address');
+                        return false;
+                    }
+                    if (!title) {
+                        Swal.showValidationMessage('Please enter a title');
+                        return false;
+                    }
+                    if (!subject) {
+                        Swal.showValidationMessage('Please enter a subject/message');
+                        return false;
+                    }
+
+                    return { email, title, subject };
+                }
+            }).then((result) => {
+                if (result.isConfirmed && result.value) {
+                    sendContactMessage(result.value);
+                }
+            });
+        }
+
+        // Send contact message
+        async function sendContactMessage(data) {
+            try {
+                Swal.fire({
+                    title: 'Sending...',
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    Swal.close();
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Your message sent successfully',
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                } else {
+                    throw new Error(result.detail || 'Failed to send message');
+                }
+            } catch (error) {
+                Swal.fire({
+                    title: 'Error',
+                    text: error.message || 'Failed to send message. Please try again.',
+                    icon: 'error'
+                });
+            }
+        }
+
 
         // Show registration form - Step 2: Complete registration
         function showRegistrationForm(email) {
@@ -1604,6 +1940,22 @@ print(response.json())</textarea>
             if (resetToken) {
                 // Show password reset form
                 showPasswordResetForm(resetToken);
+            }
+        }
+
+        // Toggle FAQ item
+        function toggleFaq(element) {
+            const faqItem = element.closest('.faq-item');
+            const isActive = faqItem.classList.contains('active');
+            
+            // Close all FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Open clicked item if it wasn't active
+            if (!isActive) {
+                faqItem.classList.add('active');
             }
         }
 

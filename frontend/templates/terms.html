@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service & Privacy Policy - Croply</title>
+    <meta name="description" content="Terms of Service and Privacy Policy for Croply's B2B AI Video Reframing API service.">
+    <link rel="icon" type="image/png" href="https://croply.uk/public/assets/croply_logo.PNG">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --bg-light: #f8fafc;
+            --border: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background: #fff;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo img {
+            width: 32px;
+            margin-right: 10px;
+        }
+
+        .back-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--primary);
+        }
+
+        .content-wrapper {
+            padding: 4rem 0;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .last-updated {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+        }
+
+        .toc {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            border: 1px solid var(--border);
+        }
+
+        .toc h3 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .toc ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .toc a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+        }
+
+        section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 100px;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--bg-light);
+            color: var(--text-main);
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            margin: 1.5rem 0 1rem;
+            color: var(--text-main);
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #334155;
+        }
+
+        ul {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            color: #334155;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .license-box {
+            background: #f0f9ff;
+            border: 1px solid #bae6fd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .license-box h4 {
+            color: #0369a1;
+            margin-bottom: 0.5rem;
+        }
+
+        .license-box p {
+            color: #0c4a6e;
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        footer {
+            background: var(--bg-light);
+            padding: 2rem 0;
+            margin-top: 4rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .toc ul {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="/" class="logo">
+                    <img src="/public/assets/croply_logo.PNG" alt="Croply Logo">
+                    Croply
+                </a>
+                <a href="/" class="back-link">← Back to Home</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container content-wrapper">
+        <h1 class="page-title">Terms of Service & Privacy Policy</h1>
+        <p class="last-updated">Last Updated: November 24, 2024</p>
+
+        <div class="toc">
+            <h3>Table of Contents</h3>
+            <ul>
+                <li><a href="#terms">1. Terms of Service</a></li>
+                <li><a href="#usage">2. Acceptable Use</a></li>
+                <li><a href="#payment">3. Payment & Credits</a></li>
+                <li><a href="#intellectual-property">4. Intellectual Property</a></li>
+                <li><a href="#liability">5. Limitation of Liability</a></li>
+                <li><a href="#privacy">6. Privacy Policy</a></li>
+                <li><a href="#data-processing">7. Data Processing</a></li>
+                <li><a href="#licenses">8. Open Source Licenses</a></li>
+            </ul>
+        </div>
+
+        <section id="terms">
+            <h2>1. Terms of Service</h2>
+            <p>By accessing or using Croply's API and services ("Service"), you agree to be bound by these Terms of Service ("Terms"). If you disagree with any part of the terms, you may not access the Service.</p>
+            <p>Croply provides a B2B SaaS API for automated video reframing. These services are provided "as is" and "as available" for your professional and commercial use.</p>
+            <p style="font-size: 0.9rem; color: #64748b; margin-top: 1.5rem;">The Service is operated by Trollflix Ltd.</p>
+        </section>
+
+        <section id="usage">
+            <h2>2. Acceptable Use</h2>
+            <h3>2.1 Permitted Use</h3>
+            <p>You may use the Service to process videos for commercial and non-commercial purposes. You are responsible for ensuring you have the necessary rights to the content you process through our API.</p>
+            
+            <h3>2.2 Restrictions</h3>
+            <p>You agree not to:</p>
+            <ul>
+                <li>Use the Service for any illegal purpose or in violation of any local, state, national, or international law.</li>
+                <li>Process content that is illegal, harmful, threatening, abusive, harassing, defamatory, or otherwise objectionable.</li>
+                <li>Attempt to reverse engineer, decompile, or disassemble any portion of the Service.</li>
+                <li>Interfere with or disrupt the integrity or performance of the Service.</li>
+                <li>Resell the Service itself as a standalone raw API without adding significant value or functionality.</li>
+            </ul>
+        </section>
+
+        <section id="payment">
+            <h2>3. Payment & Billing</h2>
+            <p>Our Service operates on a pay-as-you-go model. You agree to the following billing terms:</p>
+            <ul>
+                <li><strong>Rate:</strong> £0.10 per minute of processed video.</li>
+                <li><strong>Minimum Charge:</strong> A minimum of £0.10 is charged per video processing job, regardless of video length.</li>
+                <li><strong>Balance:</strong> You must maintain a positive account balance to use the API. Account balances are non-refundable except as required by law.</li>
+                <li><strong>Changes:</strong> We reserve the right to change our pricing with 30 days notice. Continued use of the Service after price changes constitutes agreement to the new pricing.</li>
+            </ul>
+        </section>
+
+        <section id="intellectual-property">
+            <h2>4. Intellectual Property Rights</h2>
+            <h3>4.1 Your Content</h3>
+            <p>You retain all ownership rights to the videos you upload and the reframed output generated by our Service. We claim no intellectual property rights over the material you provide to the Service.</p>
+            
+            <h3>4.2 License to Process</h3>
+            <p>By uploading content, you grant Croply a worldwide, non-exclusive, royalty-free license to use, reproduce, and process your content solely for the purpose of providing the Service to you. This license terminates when your content is deleted from our systems.</p>
+        </section>
+
+        <section id="liability">
+            <h2>5. Limitation of Liability</h2>
+            <p>To the maximum extent permitted by law, Croply shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from:</p>
+            <ul>
+                <li>Your access to or use of or inability to access or use the Service.</li>
+                <li>Any conduct or content of any third party on the Service.</li>
+                <li>Any content obtained from the Service.</li>
+                <li>Unauthorized access, use, or alteration of your transmissions or content.</li>
+            </ul>
+        </section>
+
+        <section id="privacy">
+            <h2>6. Privacy Policy</h2>
+            <p>We respect your privacy and are committed to protecting your personal data. This section outlines how we collect, use, and safeguard your information.</p>
+            
+            <h3>6.1 Information We Collect</h3>
+            <ul>
+                <li><strong>Account Information:</strong> Email address, name, and billing details.</li>
+                <li><strong>Usage Data:</strong> API logs, processing times, and error rates.</li>
+                <li><strong>Content:</strong> Video files you upload for processing.</li>
+            </ul>
+
+            <h3>6.2 How We Use Your Information</h3>
+            <p>We use your information to:</p>
+            <ul>
+                <li>Provide, maintain, and improve the Service.</li>
+                <li>Process transactions and send related information.</li>
+                <li>Send technical notices, updates, security alerts, and support messages.</li>
+                <li>Comply with legal obligations.</li>
+            </ul>
+        </section>
+
+        <section id="data-processing">
+            <h2>7. Data Processing & Retention</h2>
+            <h3>7.1 Video Data</h3>
+            <p>Video files uploaded to our Service are processed in secure, isolated environments. <strong>We do not retain your video content.</strong> Original files and processed outputs are automatically deleted from our servers shortly after processing is complete (typically within 24 hours).</p>
+            
+            <h3>7.2 Security</h3>
+            <p>We implement appropriate technical and organizational measures to protect your data against unauthorized access, alteration, disclosure, or destruction. All data transmission is encrypted using TLS/SSL protocols.</p>
+        </section>
+
+        <section id="licenses">
+            <h2>8. Open Source Licenses</h2>
+            <p>Our Service utilizes various open-source software components. We gratefully acknowledge the following:</p>
+            
+            <div class="license-box">
+                <h4>YOLO (You Only Look Once)</h4>
+                <p>Our object detection capabilities utilize YOLO technology, which is licensed under the GNU Affero General Public License v3.0 (AGPL-3.0). In compliance with this license, the source code for our modifications to the YOLO components is available upon request to users interacting with the software remotely through a computer network.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>9. Contact Us</h2>
+            <p>If you have any questions about these Terms or our Privacy Policy, please contact us at:</p>
+            <p><strong>Email:</strong> support@croply.uk</p>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Croply. All rights reserved.</p>
+            <p style="font-size: 0.75rem; margin-top: 0.5rem; opacity: 0.7;">operated by trollflix ltd</p>
+        </div>
+    </footer>
+</body>
+</html>

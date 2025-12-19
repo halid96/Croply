@@ -2,8 +2,7 @@
 Reusable MySQL Database Connector Utility
 
 This module provides a reusable database connection function that loads
-credentials from the appropriate .env file (local.env or production.env)
-based on IS_DEVELOPMENT setting in environment.env.
+credentials from the repository-level .env file.
 """
 
 import mysql.connector
@@ -15,10 +14,6 @@ from utils.env_loader import get_env_variables
 def get_db_connection() -> Optional[mysql.connector.MySQLConnection]:
     """
     Get a MySQL database connection using credentials from the appropriate .env file.
-    
-    The .env file is determined by environment.env:
-    - If IS_DEVELOPMENT=TRUE, uses local.env
-    - Otherwise, uses production.env
     
     Expected environment variables in the .env file:
         DB_HOST=localhost
@@ -41,7 +36,7 @@ def get_db_connection() -> Optional[mysql.connector.MySQLConnection]:
             cursor.close()
             conn.close()
     """
-    # Load environment variables from appropriate .env file
+    # Load environment variables from .env file
     env_vars = get_env_variables()
     
     # Get database credentials
@@ -53,10 +48,8 @@ def get_db_connection() -> Optional[mysql.connector.MySQLConnection]:
     
     # Validate required credentials
     if not all([db_user, db_password, db_name]):
-        from utils.env_loader import is_development
-        env_type = "local.env" if is_development() else "production.env"
         raise ValueError(
-            f"Missing required database credentials in {env_type}. "
+            "Missing required database credentials in .env. "
             "Required: DB_USER, DB_PASSWORD, DB_NAME"
         )
     
@@ -106,4 +99,3 @@ def get_db_cursor(connection: Optional[mysql.connector.MySQLConnection] = None):
             raise ConnectionError("Failed to establish database connection")
     
     return connection, connection.cursor()
-

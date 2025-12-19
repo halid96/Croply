@@ -1,11 +1,8 @@
 """
 Environment Variable Loader Utility
 
-This module provides functions to load environment variables from the appropriate
-.env file based on the IS_DEVELOPMENT setting in environment.env.
-
-If IS_DEVELOPMENT=TRUE in environment.env, it loads from local.env
-Otherwise, it loads from production.env
+This module provides functions to load environment variables from the project's
+.env file (located at the repository root).
 """
 
 import os
@@ -49,7 +46,7 @@ def load_env_file(env_path: str) -> Dict[str, str]:
 
 def get_project_root() -> str:
     """
-    Get the project root directory (where environment.env, local.env, production.env are located).
+    Get the project root directory (where .env is located).
     
     Returns:
         Path to project root directory
@@ -62,25 +59,13 @@ def get_project_root() -> str:
 
 def get_env_file_path() -> str:
     """
-    Determine which .env file to use based on environment.env IS_DEVELOPMENT setting.
+    Get the absolute path to the repository's .env file.
     
     Returns:
-        Path to the appropriate .env file (local.env or production.env)
+        Path to .env file
     """
     project_root = get_project_root()
-    environment_env_path = os.path.join(project_root, "environment.env")
-    
-    # Load environment.env to check IS_DEVELOPMENT
-    env_vars = load_env_file(environment_env_path)
-    is_development = env_vars.get('IS_DEVELOPMENT', 'FALSE').upper() == 'TRUE'
-    
-    # Choose the appropriate .env file
-    if is_development:
-        env_file = os.path.join(project_root, "local.env")
-    else:
-        env_file = os.path.join(project_root, "production.env")
-    
-    return env_file
+    return os.path.join(project_root, ".env")
 
 
 def get_env_variable(key: str, default: Optional[str] = None) -> Optional[str]:
@@ -107,10 +92,10 @@ def get_env_variable(key: str, default: Optional[str] = None) -> Optional[str]:
 
 def get_env_variables() -> Dict[str, str]:
     """
-    Get all environment variables from the appropriate .env file.
+    Get all environment variables from the .env file.
     
     Returns:
-        Dictionary of all environment variables from local.env or production.env
+        Dictionary of all environment variables
         
     Example:
         from utils.env_loader import get_env_variables
@@ -121,17 +106,3 @@ def get_env_variables() -> Dict[str, str]:
     """
     env_file_path = get_env_file_path()
     return load_env_file(env_file_path)
-
-
-def is_development() -> bool:
-    """
-    Check if the current environment is development mode.
-    
-    Returns:
-        True if IS_DEVELOPMENT=TRUE in environment.env, False otherwise
-    """
-    project_root = get_project_root()
-    environment_env_path = os.path.join(project_root, "environment.env")
-    env_vars = load_env_file(environment_env_path)
-    return env_vars.get('IS_DEVELOPMENT', 'FALSE').upper() == 'TRUE'
-

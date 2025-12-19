@@ -1,10 +1,25 @@
 cryptography==46.0.3
 fastapi==0.121.2
 librosa==0.11.0
-mysql_connector_repackaged==0.3.1
-numpy==2.3.4
+# Use official connector to avoid missing _version errors
+mysql-connector-python==8.3.0
+# numpy 2.3.x conflicts with opencv 4.12; highest Py3.9-compatible build is 2.0.x
+numpy==2.0.2
 opencv_python==4.12.0.88
 opencv_python_headless==4.12.0.88
 PyJWT==2.9.0
+# Note: python_bcrypt 0.3.2 doesn't have checkpw() method like standard bcrypt
+# Password validation uses hashpw() with stored hash (contains salt) and compares results
+# See functions/crypto/password_hash.py for implementation details
 python_bcrypt==0.3.2
+scenedetect==0.6.7.1
+requests==2.32.3
+tqdm==4.67.1
 ultralytics==8.3.228
+lap
+imageio[ffmpeg]
+ffmpeg-python
+deep-sort-realtime
+git+https://github.com/openai/CLIP.git
+uvicorn[standard]==0.27.1
+email-validator==2.2.0

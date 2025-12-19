@@ -43,6 +43,7 @@ def add_new_user(display_name: str, raw_email: str, raw_password: str):
         print("Failed to connect to database")
         return None
     
+    cursor = None
     try:
         # Hash the password
         password_hash = hash_password(raw_password)
@@ -81,11 +82,11 @@ def add_new_user(display_name: str, raw_email: str, raw_password: str):
         return None
         
     finally:
-        cursor.close()
+        if cursor:
+            cursor.close()
         conn.close()
 
 
 if __name__ == "__main__":
     # Example usage
     add_new_user("testuser", "test@example.com", "secure_password_123")
-
