@@ -3,22 +3,32 @@ installation_linux.md
 installation.md
 Croply.sql
 
+# Environment
 .env
 .env.*
 *.env
 !environment.env
-backend/caddy/production
+
+# Packages
 backend/python/packages
+backend/python/venv
 
-backend/storage/videos_awaiting_reframe/*
-!backend/storage/videos_awaiting_reframe/.gitkeep
+# Build/Caddy
+backend/caddy/production
 
-backend/storage/videos_reframed/*
-!backend/storage/videos_reframed/.gitkeep
+# Storage (Ignore all files except .gitkeep)
+**/storage/videos_awaiting_reframe/*
+!**/storage/videos_awaiting_reframe/.gitkeep
 
+**/storage/videos_reframed/*
+!**/storage/videos_reframed/.gitkeep
 
-#YOLO model weights
-/models/*
+# Analysis Cache
+backend/python/.cache/*
+!backend/python/.cache/.gitkeep
+
+# YOLO model weights
+**/models/*
 *.pt
 *.onnx
 
@@ -44,4 +54,3 @@ $RECYCLE.BIN/
 *.swp
 *.swo
 *~
-
